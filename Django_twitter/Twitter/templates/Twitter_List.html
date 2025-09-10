@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+chai aur twitter
+{% endblock %}
+
+{% block content %}
+<h1>My twitter</h1>
+<a  class="btn btn-primary mb-4" href="{% url 'Twitter_create' %}"> Create a Tweet</a>
+<div class="container row gap-3">
+    {% for twitter in twitters %}
+    <div class="card" style="width: 18rem;">
+  <img src="{{twitter.photo.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{twitter.user.username}}</h5>
+    <p class="card-text">{{twitter.text}}</p>
+    <a href="{% url 'Twitter_edit' twitter.id%}" class="btn btn-primary">Edit</a>
+       <a href="{% url 'Twitter_delete' twitter.id%}" class="btn btn-danger">Delete</a>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
